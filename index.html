@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <div>
+        <h1>DOM</h1>
+        <div id="form-content" class="content">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" />
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" />
+            <label for="email">Email</label>
+            <input type="text" id="email" />
+        </div>
+        <div id="main-content" class="content">
+            <p class="render">First Name: Alex</p>
+            <p class="render" id="lastName">Last Name: Bank</p>
+            <p class="render">Email: alexbank@example.com</p>
+            <p class="render">Country: Pakistan</p>
+            <p class="render">Contact: +92 300 1234567</p>
+        </div>
+    </div>
+
+    <script>
+        function displayResult(result) {
+            document.write(result + "<br>");
+            document.write(result);
+        }
+
+        const formContent = document.getElementById("form-content");
+        displayResult("Node type of 'form-content': " + formContent.nodeType);
+
+        const lastNameElement = document.getElementById("lastName");
+        displayResult("Node type of 'lastName' element: " + lastNameElement.nodeType);
+
+        const lastNameChild = lastNameElement.firstChild;
+        displayResult("Node type of child node of 'lastName': " + lastNameChild.nodeType);
+
+        lastNameElement.textContent = "Last Name: Khan"; 
+        displayResult("Updated child node of 'lastName': " + lastNameElement.textContent);
+
+        const mainContent = document.getElementById("main-content");
+        const firstChild = mainContent.firstElementChild;
+        const lastChild = mainContent.lastElementChild;
+        displayResult("First child of 'main-content': " + firstChild.innerHTML);
+        displayResult("Last child of 'main-content': " + lastChild.innerHTML);
+
+        const nextSibling = lastNameElement.nextElementSibling;
+        const prevSibling = lastNameElement.previousElementSibling;
+        displayResult("Next sibling of 'lastName': " + (nextSibling ? nextSibling.innerHTML : "None"));
+        displayResult("Previous sibling of 'lastName': " + (prevSibling ? prevSibling.innerHTML : "None"));
+
+        const emailElement = document.getElementById("email");
+        const parentNode = emailElement.parentNode;
+        displayResult("Parent node of 'email': " + parentNode.tagName);
+        displayResult("Node type of 'email' element's parent node: " + parentNode.nodeType);
+    </script>
+</body>
+</html>
